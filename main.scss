@@ -1,0 +1,580 @@
+@import url('https://fonts.googleapis.com/css2?family=Koulen&family=Nunito+Sans:wght@200;300;600;800;900&family=Radio+Canada:wght@300;600;700&display=swap');
+
+* { margin: 0; padding: 0; box-sizing: border-box;font-family: 'Koulen', cursive;
+    font-family: 'Nunito Sans', sans-serif;
+    font-family: 'Radio Canada', sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: rgb(255, 255, 255);
+
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+ul {
+    list-style-type: none;
+}
+
+// Mobile Settings for Responsove
+$tabletSetings:620px;
+@mixin tabletSetings {
+    @media(min-width: #{$tabletSetings}){
+        @content;
+    }
+}
+
+// Table Settings for Responsive
+$tableSettings-2:820px;
+@mixin tableSettings-2 {
+    @media(min-width: #{$tableSettings-2}){
+        @content;
+    }
+}
+
+// Desktop Settings for Responsive
+$deskTop:940px;
+@mixin deskTop {
+    @media(min-width: #{$deskTop}){
+        @content;
+    }
+}
+// Big Desktop for Responsive
+$bigDesktop-2:1100px;
+@mixin bigDesktop {
+    @media(min-width: #{$bigDesktop-2}){
+        @content;
+    }
+}
+
+.hero-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: url(/images/coffee-bg2.jpg);
+    background-size: cover;
+    background-position-x: 50%;
+    background-position-y: 60%;
+    width: 100%;
+    height: 100vh;
+    z-index: -2;
+    opacity: 10;
+
+    // For Animation Code Here
+    animation: bg1Intro 1.2s ease-in-out forwards;
+
+    &::before {
+        content: '';
+        position: absolute;
+        background-color: black;
+        width: 100%;
+        height: 100vh;
+        opacity: .7;
+    }
+}
+
+.wrapper {
+    margin: 1em;
+
+    @include tabletSetings {
+        width:80%;
+        margin: 1.9em auto;
+    }
+
+    @include bigDesktop(){
+        width: 70%;
+        margin: 1.9em auto;
+    }
+}
+
+header {
+
+    display: flex;
+    justify-content: space-between;
+
+    .logo {
+        color: white;
+        font-weight: bold;
+        font-size: 1.5rem;
+    
+        span {
+            text-transform: uppercase;
+            color: red;
+        }
+    }
+
+    // Clossing Button for Menu
+    .close-menu { 
+       float: right;
+       width: 2em;
+       margin: 1.3em;
+       cursor: pointer;
+
+       @include tableSettings-2(){
+            display: none;
+       }
+    }
+
+    // Navigation Area
+    nav {
+        // display: none;
+        position: fixed;
+        top: 0;
+        right: 0;
+        background: white;
+        height: 100vh;
+        width: 50%;
+        z-index: 999;
+        text-transform: uppercase;
+        transform: translateX(100%);
+        transition: transform .5s ease-in-out;
+
+
+        @include tableSettings-2(){
+           transform: translateX(0%);
+           position: unset;
+           display: block;
+           width: auto;
+           height: auto;
+           background: none;
+        }
+        
+        ul {
+            padding: 0;
+            margin-top: 7em;
+
+            @include tableSettings-2(){
+                display: flex;
+                justify-content: space-between;
+                margin: 0;
+            }
+            
+            a {
+                padding: .95em 4em;
+                display: block;
+
+                @include tableSettings-2(){
+                    color: white;
+                    padding: .2rem .7rem;
+                    font-size: .8rem;
+                    opacity: .6;
+                }
+
+                &:hover {
+                    background: rgb(208, 208, 208);
+                    font-weight: bold;
+
+                    @include tableSettings-2(){
+                        background: none;
+                        opacity: 1;
+                        font-weight: none;
+                    }
+                }
+            }
+        }
+    }
+
+    // Open MMenu Button
+    .open-menu {
+        cursor: pointer;
+
+        @include tableSettings-2(){
+            display: none;
+        }
+    }
+}
+
+.open-nav{
+    transform: translateX(0%);
+}
+
+.hero-content {
+    color: white;
+
+    h3 {
+        margin-top:2em;
+        font-size: 2rem;
+        opacity: .7;
+
+        @include tableSettings-2(){
+            margin-top: 4em;
+        }
+
+        @include bigDesktop(){
+            margin-bottom: .8em;
+            font-size: 2rem;
+        }
+    }
+
+    h1 {
+        font-size: 6rem;
+        line-height: .8em;
+
+        @include bigDesktop(){
+            font-size: 8rem;
+
+            &::after{
+                content: "";
+                position: absolute;
+                width: 2.8em;
+                height: .2em;
+                background: yellow;
+                z-index: -1;
+                left: 3.8em;
+                top: 2.6em;
+                opacity: .4;
+            }
+        }
+    }
+
+    p {
+        margin-top: 1.4em;
+        font-size: .9rem;
+        width: 69%;
+        line-height: 1.4em;
+        margin-bottom: 1.8em;
+
+        @include bigDesktop(){
+            margin-top: 2em;
+            font-size: 1.3rem;
+        }
+    }
+
+    .link {
+
+        color: white;
+        font-weight: bold;
+    }
+
+    .arrow-down {
+        margin-top: 10em;
+        margin-bottom: 10em;
+        animation: upDownArrow 1s ease-in-out infinite;
+
+        @include tabletSetings(){
+            margin-bottom: 16em;
+        }
+
+        @include tableSettings-2(){
+            margin-top: 12em;
+            margin-bottom: 12em;
+        }
+
+        @include bigDesktop(){
+            margin-top: 6em;
+            margin-bottom: 10em;
+        }
+    }
+}
+
+.more-information {
+
+    width: 88%;
+    margin: auto;
+
+    @include tabletSetings(){
+        width: 100%;
+        margin: 0;
+    }
+
+    img {
+        width: 100%;
+        object-fit: cover;
+        height: 22em;
+
+        @include tabletSetings() {
+            height: 11em;
+        }
+
+        @include deskTop(){
+            height: 13em;
+        }
+
+        @include bigDesktop(){
+            height: 19em;
+        }
+    }
+
+    .info-1 {
+        margin-bottom: 5em;
+
+        @include tabletSetings(){
+           display: grid;
+           grid-template-columns: repeat(2,1fr);
+           gap: 2em;
+
+        }
+
+        .title {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: .2em;
+
+            @include tabletSetings(){
+                font-size: 1.2rem;
+                margin-bottom: .5em;
+            }
+
+            @include deskTop(){
+                font-size: 2.5rem;
+                margin-bottom: .3em;
+            }
+        }
+
+        .disc {
+            margin-bottom: 1em;
+            font-size: 1rem;
+
+            @include tabletSetings(){
+                font-size: .8rem;
+            }
+
+            @include deskTop(){
+                font-size: .9rem;
+            }
+        }
+    }
+
+    .info-2 {
+        margin-bottom: 5em;
+
+        @include tabletSetings(){
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2em;
+            grid-template-areas: 
+            "left right";
+        }
+
+        .title {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: .2em;
+
+            @include tabletSetings(){
+                font-size: 1.2rem;
+                font-size: 1.7rem;
+                margin-bottom: .5em;
+            }
+
+            @include deskTop(){
+                font-size: 2.5rem;
+                margin-bottom: .3em;
+            }
+        }
+
+        .disc {
+            margin-bottom: 1em;
+            font-size: 1rem;
+
+            @include tabletSetings(){
+                font-size: .8rem;
+            }
+
+            @include deskTop(){
+                font-size: .9rem;
+            }
+        }
+
+        .content2 {
+
+            @include tabletSetings(){
+                grid-area: right;
+            }
+        }
+
+        .img-info2{
+
+            @include tabletSetings(){
+                grid-area: left;
+            }
+        }
+    }
+
+    .info-3 {
+        margin-bottom: 5em;
+
+        @include tabletSetings(){
+           display: grid;
+           grid-template-columns: repeat(2,1fr);
+           gap: 2em;
+        }
+
+        .title {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: .2em;
+
+            @include tabletSetings(){
+                    font-size: 1.2rem;
+                    font-size: 1.7rem;
+                    margin-bottom: .5em;
+            }
+
+            @include deskTop(){
+                font-size: 2.5rem;
+                margin-bottom: .3em;
+            }
+        }
+
+        .disc {
+            margin-bottom: 1em;
+            font-size: 1rem;
+
+            @include tabletSetings(){
+                font-size: .8rem;
+            }
+
+            @include deskTop(){
+                font-size: .9rem;
+            }
+        }
+
+    }
+
+    .info-4 {
+        margin-bottom: 5em;
+
+        @include tabletSetings(){
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2em;
+            grid-template-areas: 
+            "left right";
+        }
+
+        .title {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: .2em;
+
+            @include tabletSetings(){
+                font-size: 1.2rem;
+            }
+
+            @include deskTop(){
+                font-size: 2.5rem;
+                margin-bottom: .3em;
+            }
+        }
+
+        .disc {
+            margin-bottom: 1em;
+            font-size: 1rem;
+
+            @include tabletSetings(){
+                font-size: .8rem;
+            }
+
+            @include deskTop(){
+                font-size: .9rem;
+            }
+        }
+
+        .content4 {
+
+            @include tabletSetings(){
+                grid-area: right;
+            }
+        }
+
+        .img-info2{
+
+            @include tabletSetings(){
+                grid-area: left;
+            }
+        }
+    }
+
+    .info-5 {
+        margin-bottom: 5em;
+
+        @include tabletSetings(){
+            display: grid;
+            grid-template-columns: repeat(2,1fr);
+            gap: 2em;
+         }
+
+        .title {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: .2em;
+
+            @include tabletSetings(){
+                font-size: 1.2rem;
+                font-size: 1.7rem;
+                margin-bottom: .5em;
+            }
+
+            @include deskTop(){
+                font-size: 2.5rem;
+                margin-bottom: .3em;
+            }
+        }
+    
+
+        .disc {
+            margin-bottom: 1em;
+            font-size: 1rem;
+
+            @include tabletSetings(){
+                font-size: .8rem;
+            }
+
+            @include deskTop(){
+                font-size: .9rem;
+            }
+        }
+    }
+    
+}
+
+footer {
+
+    background: black;
+    padding: 1.7em;
+
+    p {
+        text-transform: uppercase;
+        font-size: .5rem;
+        display: flex;
+        justify-content: center;
+        color: white;
+        opacity: .7;
+        letter-spacing: .1rem;
+
+        @include tabletSetings(){
+            font-size: .7rem;
+        }
+    }
+}
+
+@keyframes bg1Intro {
+
+    from {
+        clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+    }
+
+    to {
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    }
+}
+
+@keyframes upDownArrow {
+
+    from {
+        transform: translateY(-290%);
+    }
+
+    to {
+        transform: translateY(0%);
+    }
+
+}
